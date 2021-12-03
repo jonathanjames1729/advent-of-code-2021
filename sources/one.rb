@@ -6,7 +6,7 @@ class One
     @window_size = size
   end
 
-  def self.count_increases(path, window_size=1)
+  def self.count_increases(path, window_size = 1)
     new(path, window_size).count_increases
   end
 
@@ -21,7 +21,7 @@ class One
   attr_reader :input_path, :window_size, :measurements, :windowed
 
   def load
-    File.readlines(input_path).map { |line| line.to_i }
+    File.readlines(input_path).map(&:to_i)
   end
 
   def sliding_window
@@ -36,7 +36,7 @@ class One
     windowed.reduce([0, nil]) do |(increasing_count, previous_sum), sum|
       if previous_sum.nil? || sum <= previous_sum
         [increasing_count, sum]
-      else 
+      else
         [increasing_count + 1, sum]
       end
     end[0]
