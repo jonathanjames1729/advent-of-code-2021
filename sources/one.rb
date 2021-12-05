@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Sonar Sweep (https://adventofcode.com/2021/day/1)
 class One
   def initialize(path, size)
     @input_path = path
@@ -43,5 +44,7 @@ class One
   end
 end
 
+puts One.count_increases('one_example.txt')
 puts One.count_increases('one.txt')
+puts One.count_increases('one_example.txt', 3)
 puts One.count_increases('one.txt', 3)

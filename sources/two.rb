@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Dive! (https://adventofcode.com/2021/day/2)
 class Two
   attr_reader :depth, :horizontal
 
@@ -7,6 +8,7 @@ class Two
     @input_path = path
     @depth = 0
     @horizontal = 0
+    @aim = 0
   end
 
   def self.follow(path)
@@ -31,7 +33,7 @@ class Two
 
   private
 
-  attr_reader :input_path, :course
+  attr_reader :input_path, :course, :aim
 
   def load
     File.readlines(input_path).map do |line|
@@ -57,20 +59,23 @@ class Two
   end
 
   def process_corrected
-    aim = 0
-    course.each do |step|
-      case step[:command]
-      when :forward
-        @horizontal += step[:magnitude]
-        @depth += (step[:magnitude] * aim)
-      when :down
-        aim += step[:magnitude]
-      when :up
-        aim -= step[:magnitude]
-      end
+    course.each { |step| process_step(step) }
+  end
+
+  def process_step(command:, magnitude:)
+    case command
+    when :forward
+      @horizontal += magnitude
+      @depth += (magnitude * aim)
+    when :down
+      @aim += magnitude
+    when :up
+      @aim -= magnitude
     end
   end
 end
 
+puts Two.follow('two_example.txt')
 puts Two.follow('two.txt')
+puts Two.follow_corrected('two_example.txt')
 puts Two.follow_corrected('two.txt')

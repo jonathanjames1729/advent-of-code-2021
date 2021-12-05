@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Binary Diagnostic (https://adventofcode.com/2021/day/3)
 class Three
   attr_reader :epsilon_rate, :gamma_rate
 
@@ -75,5 +76,7 @@ class Three
   end
 end
 
+puts Three.power_consumption('three_example.txt')
 puts Three.power_consumption('three.txt')
+puts Three.life_support_rating('three_example.txt')
 puts Three.life_support_rating('three.txt')
