@@ -1,5 +1,6 @@
 *~
 .bash_history
+sources/Gemfile.lock
 
 *.gem
 *.rbc
