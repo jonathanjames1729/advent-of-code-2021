@@ -6,5 +6,10 @@ RUN apt-get update && \
                     emacs && \
     rm -rf /var/lib/apt/lists/*
 
-RUN mkdir -p /root/sources
+COPY init.el /root/.emacs.el
+RUN mkdir -p /root/sources /root/.emacs.d && \
+    chmod 777 /root/sources /root/.emacs.d /root/.emacs.el
+
+ENV TERM=xterm-256color
+
 WORKDIR /root/sources

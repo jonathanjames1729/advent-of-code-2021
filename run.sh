@@ -13,6 +13,7 @@ main() {
                --volume "${ScriptDir}/.bash_history:/root/.bash_history" \
                --volume "${ScriptDir}/sources:/root/sources" \
                --volume "${GemVolume}:/usr/local/bundle" \
+               --volume "${EmacsVolume}:/root/.emacs.d" \
                "$Tag" \
                /bin/bash
 }
