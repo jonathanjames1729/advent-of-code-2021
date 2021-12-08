@@ -1,4 +1,5 @@
 *~
+.DS_Store
 .bash_history
 sources/Gemfile.lock
 
