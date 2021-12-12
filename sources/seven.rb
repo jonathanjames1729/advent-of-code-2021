@@ -15,50 +15,28 @@ class Seven
   end
 
   def align_crabs
-    min_position = positions.keys.min
-    max_position = positions.keys.max
-    cost = positions.reduce(0) { |memo, (position, count)| memo + ((position - min_position) * count) }
+    cost = cost_at_min_position
     best_cost = cost
-    best_position = min_position
     ((min_position + 1)..max_position).each do |try|
       positions.each do |position, count|
-        if position < try
-          cost += count
-        else
-          cost -= count
-        end
+        cost += (position < try ? count : -count)
       end
-      if cost < best_cost
-        best_cost = cost
-        best_position = try
-      end
+
+      best_cost = cost if cost < best_cost
     end
-    puts "#{best_cost} at #{best_position}"
     best_cost
   end
 
   def align_crabs_corrected
-    min_position = positions.keys.min
-    max_position = positions.keys.max
-    cost = positions.reduce(0) do |memo, (position, count)|
-      memo + ((position - min_position) * (position - min_position + 1) * count / 2)
-    end
+    cost = cost_at_min_position_corrected
     best_cost = cost
-    best_position = min_position
     ((min_position + 1)..max_position).each do |try|
       positions.each do |position, count|
-        if position < try
-          cost += (count * (try - position))
-        else
-          cost -= (count * (position - try + 1))
-        end
+        cost += (position < try ? (count * (try - position)) : -(count * (position - try + 1)))
       end
-      if cost < best_cost
-        best_cost = cost
-        best_position = try
-      end
+
+      best_cost = cost if cost < best_cost
     end
-    puts "#{best_cost} at #{best_position}"
     best_cost
   end
 
@@ -70,6 +48,24 @@ class Seven
     @positions ||= File.readlines(input_path).join(',').split(',').map(&:to_i).each_with_object({}) do |position, memo|
       memo[position] ||= 0
       memo[position] += 1
+    end
+  end
+
+  def min_position
+    @min_position ||= positions.keys.min
+  end
+
+  def max_position
+    @max_position ||= positions.keys.max
+  end
+
+  def cost_at_min_position
+    positions.reduce(0) { |memo, (position, count)| memo + ((position - min_position) * count) }
+  end
+
+  def cost_at_min_position_corrected
+    positions.reduce(0) do |memo, (position, count)|
+      memo + ((position - min_position) * (position - min_position + 1) * count / 2)
     end
   end
 end
