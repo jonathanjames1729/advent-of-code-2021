@@ -71,7 +71,7 @@ class Thirteen
     points.map! do |point|
       x = point[0]
       if x > x_position
-        [2 * x_position - x, point[1]]
+        [(2 * x_position) - x, point[1]]
       else
         point
       end
@@ -82,7 +82,7 @@ class Thirteen
     points.map! do |point|
       y = point[1]
       if y > y_position
-        [point[0], 2 * y_position - y]
+        [point[0], (2 * y_position) - y]
       else
         point
       end
@@ -101,7 +101,7 @@ class Thirteen
     rendered = points.each_with_object(Array.new(max_y + 1) { Array.new(max_x + 1, ' ') }) do |(x, y), grid|
       grid[y][x] = '#'
     end
-    rendered.map { |line| line.join('') }.join("\n")
+    rendered.map(&:join).join("\n")
   end
 end
 

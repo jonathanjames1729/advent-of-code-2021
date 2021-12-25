@@ -80,7 +80,7 @@ class Image
   end
 
   def neighbourhood_value(x_position, y_position)
-    neighbourhood(x_position, y_position).reduce(0) { |value, pixel| value * 2 + pixel }
+    neighbourhood(x_position, y_position).reduce(0) { |value, pixel| (value * 2) + pixel }
   end
 
   def enhanced_pixel(x_position, y_position, enhancement)

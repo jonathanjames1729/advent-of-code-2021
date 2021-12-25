@@ -35,7 +35,7 @@ class Three
       @report.filter! { |row| row[bit_index] == most_common_value }
       bit_index += 1
     end
-    report[0].join('').to_i(2)
+    report[0].join.to_i(2)
   end
 
   def co2_scrubber_rating
@@ -49,7 +49,7 @@ class Three
       @report.filter! { |row| row[bit_index] == least_common_value }
       bit_index += 1
     end
-    report[0].join('').to_i(2)
+    report[0].join.to_i(2)
   end
 
   private
@@ -58,7 +58,7 @@ class Three
 
   def load
     File.readlines(input_path).map do |line|
-      line.strip.split('').map(&:to_i)
+      line.strip.chars.map(&:to_i)
     end
   end
 
@@ -71,8 +71,8 @@ class Three
   def calculate_rates
     length = report.count
     counts = bit_counts
-    @gamma_rate = counts.map { |count| count > (length - count) ? 1 : 0 }.join('').to_i(2)
-    @epsilon_rate = counts.map { |count| count < (length - count) ? 1 : 0 }.join('').to_i(2)
+    @gamma_rate = counts.map { |count| count > (length - count) ? 1 : 0 }.join.to_i(2)
+    @epsilon_rate = counts.map { |count| count < (length - count) ? 1 : 0 }.join.to_i(2)
   end
 end
 

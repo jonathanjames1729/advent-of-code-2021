@@ -53,7 +53,7 @@ class Eight
       elsif unique
         memo[:unique].append(digit.chars.sort)
       else
-        memo[:output].append(digit.chars.sort.join(''))
+        memo[:output].append(digit.chars.sort.join)
       end
     end
   end
@@ -91,7 +91,7 @@ class Eight
   def finish_fill_decoder
     decoder[2] = classified[5].first
     decoder[0] = classified[6].first
-    @decoder = decoder.map { |number, digit| [digit.join(''), number] }.to_h
+    @decoder = decoder.map { |number, digit| [digit.join, number] }.to_h
   end
 
   def fill_decoder

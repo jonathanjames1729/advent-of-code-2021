@@ -91,7 +91,7 @@ class RebootStep
 
     def load(line)
       match = STEP_RE.match(line)
-      new(match[1].to_sym, [1, 2, 3].map { |i| (match[2 * i].to_i..match[2 * i + 1].to_i) })
+      new(match[1].to_sym, [1, 2, 3].map { |i| (match[2 * i].to_i..match[(2 * i) + 1].to_i) })
     end
 
     def intersect_ranges(one, two)

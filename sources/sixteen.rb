@@ -77,7 +77,7 @@ class Sixteen
   end
 
   def read_number(length)
-    read_string(length).reduce(0) { |value, bit| value * 2 + bit }
+    read_string(length).reduce(0) { |value, bit| (value * 2) + bit }
   end
 
   def read_packet
@@ -102,7 +102,7 @@ class Sixteen
       result.concat(five_bits)
       length += 5
     end
-    { version: version, type: :lit, length: length, value: result.reduce(0) { |value, bit| value * 2 + bit } }
+    { version: version, type: :lit, length: length, value: result.reduce(0) { |value, bit| (value * 2) + bit } }
   end
 
   def read_operator_zero_packet(version, type)

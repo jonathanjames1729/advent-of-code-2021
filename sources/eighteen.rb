@@ -138,7 +138,7 @@ class SnailfishNumber
   def magnitude_inner(element)
     return element unless element.is_a?(Array)
 
-    3 * magnitude_inner(element[0]) + 2 * magnitude_inner(element[1])
+    (3 * magnitude_inner(element[0])) + (2 * magnitude_inner(element[1]))
   end
 end
 
