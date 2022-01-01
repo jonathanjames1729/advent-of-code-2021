@@ -1,0 +1,19 @@
+Starting velocity: v=(u, w)
+
+Horizontally
+------------
+Takes u steps to reduce u to zero
+Travels u(u + 1) / 2 in total horizontally
+If u = 12 then the probe travels to 78 in 12 steps
+
+Vertically
+----------
+Takes w steps to reduce w to zero (the high point)
+Stays at the high point for 1 step
+The high point is w(w + 1) / 2
+After w more steps is at zero elavation travelling at -(w + 1)
+Depths that the probe reaches are -(2w + i + 1)i / 2 for i=1, 2, 3,...
+In particular if w + 1 > 159 then the probe never hits the target
+
+So v=(12, 158) hits the target and hits the highest point of all such trajectories
+The highest point is 12,561
